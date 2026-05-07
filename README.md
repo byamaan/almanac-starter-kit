@@ -20,7 +20,7 @@ almanac-starter-kit/
     ├── render.sh                       # Chrome headless → 2160×2700 PNG
     ├── crop.py                         # whitespace normalizer (auto-runs in render.sh)
     ├── library.py                      # illustration reuse library (grows with every carousel)
-    ├── nanobanana.py                   # STYLE_PREFIX + compose_prompt — locked consistency anchor
+    ├── style.py                        # STYLE_PREFIX + compose_prompt — locked consistency anchor
     ├── base.css                        # locked layout
     ├── theme.css                       # generated from brand.config.json on each build
     ├── fonts/                          # EB Garamond bundled (SIL OFL)

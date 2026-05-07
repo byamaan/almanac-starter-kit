@@ -12,7 +12,7 @@ You are creating almanac-style Instagram carousels: encyclopedia-on-paper slides
 
 The user reviews at **one gate**: after topic proposal. Once topics are approved, run the full pipeline autonomously — copy, scene prompts, manifest, image generation, visual QA, render — without further pauses. The only soft second gate is **content verification**: if a fact / quote / citation can't be verified against the rules in `brand.config.json`, stop and surface it before render. That's non-negotiable.
 
-**Reproducibility is the goal.** Every almanac carousel must look and feel like it came from the same hand: same paper, same ink, same line weight, same composition rules. That comes from the locked **technique** (the engraving style enforced by `STYLE_PREFIX` in `nanobanana.py`) and the locked CSS in `base.css`. It does **not** come from forcing the same subject vocabulary. Subjects are topic-driven and free to be modern, contemporary, or historical. Never edit the locked files per-carousel.
+**Reproducibility is the goal.** Every almanac carousel must look and feel like it came from the same hand: same paper, same ink, same line weight, same composition rules. That comes from the locked **technique** (the engraving style enforced by `STYLE_PREFIX` in `style.py`) and the locked CSS in `base.css`. It does **not** come from forcing the same subject vocabulary. Subjects are topic-driven and free to be modern, contemporary, or historical. Never edit the locked files per-carousel.
 
 ---
 
@@ -194,7 +194,7 @@ Other rules (in addition to whatever's in `voice_rules` from config):
 
 ### Scene rules
 
-The locked `STYLE_PREFIX` (in `nanobanana.py`) enforces the **technique** — for the default engraving style: black-and-white steel-engraving line art, pure white background (keyed to the canvas via CSS multiply), no faces, single subject, no text in image. The technique is locked. The **subject is open** — pick whatever the topic calls for. Modern, contemporary, historical, abstract, all fine. Do not force vintage props (oil lamps, ewers, prayer mats) unless the topic genuinely wants them.
+The locked `STYLE_PREFIX` (in `style.py`) enforces the **technique** — for the default engraving style: black-and-white steel-engraving line art, pure white background (keyed to the canvas via CSS multiply), no faces, single subject, no text in image. The technique is locked. The **subject is open** — pick whatever the topic calls for. Modern, contemporary, historical, abstract, all fine. Do not force vintage props (oil lamps, ewers, prayer mats) unless the topic genuinely wants them.
 
 1. **Single subject + at most one accent prop.** Crowded scenes look amateur regardless of style. "A modern bedside lamp being switched off, a folded duvet beside it" beats a busy bedroom.
 2. **Match subject to topic.** If the topic is contemporary (sleep, scrolling, work, mornings), use contemporary objects. If it's historical or scriptural, historical objects fit naturally. Either way, one focal subject, drawn in the locked technique.
@@ -384,7 +384,7 @@ If you're not 100% sure on a claim, surface it before rendering. **Stalling > sh
 - `library.py` — illustration reuse library (`index` / `find <scene>` / `add` / `stats`)
 - `crop.py` — illustration whitespace normalizer (idempotent; auto-runs from render.sh)
 - `render.sh` — Chrome headless screenshot pipeline + auto-crop
-- `nanobanana.py` — STYLE_PREFIX + compose_prompt (consistency anchor)
+- `style.py` — STYLE_PREFIX + compose_prompt (consistency anchor)
 
 **Library at `content-bank/almanac/_library/`:**
 - One `<carousel-slug>_<slide-id>.png` per indexed illustration
@@ -400,7 +400,7 @@ The user posts a carousel by opening `<folder>/out/`, dragging the PNGs into IG 
 - **Do not pause for approval inside Phase 2.** Topic gate is the only one. The only legitimate stop inside Phase 2 is an unverifiable claim per `content_rules`.
 - **Do not ask the user about variant or length** at the topic gate unless they've asked you to. Pick using judgment.
 - **Do not edit `base.css` or `theme.css`** when adding carousels. Style is locked. New content goes in `manifest.json` only.
-- **Do not edit `STYLE_PREFIX`** in `nanobanana.py` mid-run. It is the consistency anchor across all carousels — change it once at setup, then never per-carousel.
+- **Do not edit `STYLE_PREFIX`** in `style.py` mid-run. It is the consistency anchor across all carousels — change it once at setup, then never per-carousel.
 - **Do not put a frame or border around illustrations.** They sit directly on the canvas. The `mix-blend-mode: multiply` handles the keying.
 - **Do not generate illustrations for the CTA.** It is text-only.
 - **Do not generate human faces** in scenes.

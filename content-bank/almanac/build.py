@@ -33,7 +33,7 @@ import json
 import sys
 from pathlib import Path
 
-from nanobanana import compose_prompt  # STYLE_PREFIX is the consistency anchor
+from style import compose_prompt  # STYLE_PREFIX is the consistency anchor
 
 DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = DIR.parents[1]                   # .../<project>/content-bank/almanac/ → <project>/
