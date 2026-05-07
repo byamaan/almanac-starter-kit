@@ -1,0 +1,24 @@
+{
+  "_comment": "Copy this file to brand.config.json and edit. Or, easier: open Claude Code and the skill walks you through the setup interview, writing this file for you. After editing by hand, run `python3 content-bank/almanac/build.py` to regenerate theme.css with your palette.",
+
+  "brand_name": "Your Brand Name",
+  "handle": "@yourbrand",
+  "topic_domain": "What this account posts about, in one sentence. Used for topic ideation. Example: 'productivity-system how-tos for indie founders'.",
+
+  "default_variant": "cream",
+  "accent_color": "#7B68EE",
+
+  "image_style": "engraving",
+  "custom_style_prefix": "",
+
+  "voice_rules": "Standard English grammar. First letter of every sentence is capital. No em dashes — use commas, periods, or rewrite. No emojis. Plain prose, not marketing copy.",
+  "content_rules": "All factual claims need a citable source. Statistics need a year + source.",
+
+  "default_slide_count": 7,
+
+  "palette": {
+    "cream":    { "bg": "#F5EFE1", "ink": "#12101A" },
+    "deep":     { "bg": "#5A46C7", "ink": "#F5EFE1" },
+    "midnight": { "bg": "#2A1F6E", "ink": "#F5EFE1" }
+  }
+}

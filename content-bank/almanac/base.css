@@ -1,0 +1,226 @@
+/*
+ * Almanac Carousel — Locked Layout
+ * Do NOT edit per-carousel. Only the manifest.json files change.
+ *
+ * Canvas: 1080 x 1350 CSS px. Output: 2160 x 2700 (DPR=2).
+ *
+ * Vertical layout (step slide):
+ *   Title block:  y 60  → 280   (220 tall — comfortably holds 2-line titles
+ *                                 at 84px / 1.08 line-height without clipping
+ *                                 descenders into the frame region)
+ *   Illustration: y 300 → 920   (620 tall, centered, no frame, no border)
+ *   Body:         y 950 → 1240  (flex-centered; arabic + lines + ref)
+ *   Handle:       bottom 50
+ *
+ * Cover and CTA layouts override below.
+ *
+ * COLORS: declared in theme.css (auto-generated from brand.config.json).
+ * This file does not bake in any brand colors. Edit brand.config.json
+ * and re-run build.py to change the palette.
+ */
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('fonts/EBGaramond-Regular.ttf') format('truetype-variations');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('fonts/EBGaramond-Italic.ttf') format('truetype-variations');
+  font-weight: 400 800;
+  font-style: italic;
+  font-display: block;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  width: 1080px;
+  height: 1350px;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.stage {
+  position: relative;
+  width: 1080px;
+  height: 1350px;
+  background: var(--bg);
+  font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;
+  color: var(--ink);
+}
+
+/* Title block — sits high so the illustration dominates the slide. */
+.title {
+  position: absolute;
+  top: 60px;
+  left: 90px;
+  right: 90px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 600;
+  font-size: 84px;
+  line-height: 1.08;
+  letter-spacing: -0.5px;
+  color: var(--ink);
+}
+
+/* Optional ornamental rule under title — opt-in via .stage.accent-purple.
+ * Color is set in theme.css (from accent_color in brand.config.json). */
+.rule {
+  position: absolute;
+  top: 290px;
+  left: 50%;
+  width: 60px;
+  height: 1px;
+  transform: translateX(-50%);
+  display: none;
+}
+
+/*
+ * Illustration — sits directly on the canvas. No plate, no border, no shadow.
+ * The frame's background must match --bg because mix-blend-mode (multiply on
+ * cream, screen on dark) needs an opaque destination. With a transparent
+ * destination the blend has no pixels to merge against and the white/black
+ * key fails.
+ */
+.frame {
+  position: absolute;
+  top: 300px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 620px;
+  height: 620px;
+  background: var(--bg);
+}
+
+.frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  mix-blend-mode: var(--illust-blend);
+  filter: var(--illust-filter);
+}
+
+/*
+ * Body region — flex container that vertically centers between illustration
+ * and handle. Holds three optional children, in this order:
+ *   .arabic     italic, slightly tighter (used for transliterated quotes / pull quotes)
+ *   .lines      the main prose. List of <p>; each <p> is one author-controlled line.
+ *   .ref        smaller italic source citation
+ */
+.body {
+  position: absolute;
+  top: 950px;
+  left: 90px;
+  right: 90px;
+  bottom: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+  color: var(--ink);
+}
+
+.body .arabic {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 52px;
+  line-height: 1.2;
+  letter-spacing: 0.2px;
+  max-width: 920px;
+}
+
+.body .lines {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1.35;
+  max-width: 920px;
+}
+
+.body .lines p { margin: 0; }
+
+.body .ref {
+  font-size: 22px;
+  font-style: italic;
+  letter-spacing: 0.4px;
+  opacity: 0.55;
+}
+
+/* Swipe hint — cover-only. */
+.swipe-hint { display: none; }
+
+.stage.cover .swipe-hint {
+  display: block;
+  position: absolute;
+  bottom: 100px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-style: italic;
+  font-size: 30px;
+  color: var(--ink);
+  opacity: 0.7;
+  letter-spacing: 0.4px;
+}
+
+/* Handle — bottom-anchored, italic */
+.handle {
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 26px;
+  color: var(--ink);
+  letter-spacing: 0.2px;
+  opacity: 0.85;
+}
+
+/* ----------------------------------------------------------- */
+/* COVER variant — illustration dominates, no body, no border. */
+.stage.cover .title {
+  top: 130px;
+  height: 180px;
+}
+.stage.cover .frame {
+  top: 360px;
+  width: 780px;
+  height: 780px;
+}
+.stage.cover .body { display: none; }
+
+/* ----------------------------------------------------------- */
+/* CTA variant — text only, no illustration. Title vertically centered. */
+.stage.cta .title {
+  top: 50%;
+  transform: translateY(-50%);
+  height: auto;
+  font-size: 84px;
+  letter-spacing: -0.5px;
+}
+.stage.cta .frame { display: none; }
+.stage.cta .body { display: none; }
+
+.stage.cta.accent-purple .rule {
+  top: auto;
+  bottom: 240px;
+  width: 80px;
+}

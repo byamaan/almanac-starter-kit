@@ -1,0 +1,77 @@
+{
+  "_comment": "Copy this file into a new folder named `almanac-NN-<slug>/` (e.g. `almanac-01-journaling/manifest.json`), edit, then run `python3 build.py` from this directory. The skill writes these for you when you ask for carousels in Claude Code.",
+
+  "title": "How To Start Journaling",
+  "caption": "Five steps to start a journaling habit that sticks.\n\nSave this for tomorrow morning.\n\nMost people quit journaling because they treat it like a school assignment. The trick is to make the entry small enough that you can't fail.\n\nFollow @yourbrand for daily habits.\n\n#journaling #habits #productivity",
+
+  "variant": "cream",
+  "accent": null,
+
+  "slides": [
+    {
+      "id": "01",
+      "type": "cover",
+      "title": "How To Start Journaling.",
+      "scene": "A close-up of a single open hardback notebook with a fountain pen resting across its blank pages, the notebook filling the composition. Tight crop. No rectangular plate edge, no inner border, no frame around the image, just the notebook and pen on pure white. Centered, isolated."
+    },
+    {
+      "id": "02",
+      "type": "step",
+      "title": "Pick A Time, Not A Mood.",
+      "body": [
+        "Tie the entry to a moment, not a feeling.",
+        "Right after coffee. Before bed.",
+        "The same time every day."
+      ],
+      "scene": "A close-up of a small ceramic coffee mug with steam rising from its rim, a folded napkin tucked beside it, the mug filling the composition. Tight crop. No rectangular plate edge, no inner border, no frame around the image, just the mug on pure white. Centered, isolated."
+    },
+    {
+      "id": "03",
+      "type": "step",
+      "title": "Write Three Lines.",
+      "body": [
+        "One line for what happened.",
+        "One line for how you felt.",
+        "One line for what you'll try tomorrow."
+      ],
+      "scene": "A close-up of a single sheet of paper with three short horizontal pencil lines drawn across it, a sharpened pencil resting beside the page, the paper and pencil filling the composition. Tight crop. No rectangular plate edge, no inner border, no frame around the image, just the page on pure white. Centered, isolated."
+    },
+    {
+      "id": "04",
+      "type": "step",
+      "title": "Keep It Boring.",
+      "arabic": "If it's worth doing, it's worth doing badly.",
+      "body": [
+        "Boring entries are still entries.",
+        "Streaks beat brilliance."
+      ],
+      "reference": "G.K. Chesterton",
+      "scene": "A close-up of a small flat stone resting on top of a paperback book, the stone and book filling the composition. Tight crop. No rectangular plate edge, no inner border, no frame around the image, just the stone and book on pure white. Centered, isolated."
+    },
+    {
+      "id": "05",
+      "type": "step",
+      "title": "Re-read On Sundays.",
+      "body": [
+        "Skim back through the week.",
+        "You'll spot the pattern your present self missed."
+      ],
+      "scene": "A close-up of a single open notebook with one hand resting on the page, just the hand and forearm with no figure beyond the wrist, the notebook filling the composition. Tight crop. No rectangular plate edge, no inner border, no frame around the image, just the notebook and hand on pure white. Centered, isolated."
+    },
+    {
+      "id": "06",
+      "type": "step",
+      "title": "Start Tonight.",
+      "body": [
+        "Three lines. Date them.",
+        "Tomorrow you'll have something to read."
+      ],
+      "scene": "A close-up of a single small bedside lamp with a fabric shade glowing softly, a closed notebook resting beneath the lamp, the lamp and notebook filling the composition. Tight crop. No rectangular plate edge, no inner border, no frame around the image, just the lamp and notebook on pure white. Centered, isolated."
+    },
+    {
+      "id": "07",
+      "type": "cta",
+      "title": "Follow For More."
+    }
+  ]
+}
