@@ -35,12 +35,15 @@ If Chrome is in a non-standard location, set `CHROME=/path/to/chrome` in your sh
 
 1. Sign up at [replicate.com](https://replicate.com) (free).
 2. Go to [replicate.com/account/api-tokens](https://replicate.com/account/api-tokens) and create a token.
-3. Copy `.env.example` to `.env` at the project root and paste your token:
+3. Two ways to wire it up — pick whichever you prefer:
 
-```bash
-cp .env.example .env
-# edit .env, replace `r8_xxxxx...` with your real token
-```
+   **Manual (more private):** copy `.env.example` to `.env` at the project root and paste your token in:
+   ```bash
+   cp .env.example .env
+   # edit .env, replace `r8_xxxxx...` with your real token
+   ```
+
+   **Via the skill (faster):** skip this sub-step and go straight to step 4. The first-run interview will ask whether you'd rather paste the token in chat — if you do, the skill writes `.env` for you. Caveat: the token will appear in your Claude Code conversation transcript. Fine for personal dev tokens.
 
 The kit reads `REPLICATE_API_TOKEN` from `.env` automatically. **Never commit `.env`** — `.gitignore` already excludes it.
 

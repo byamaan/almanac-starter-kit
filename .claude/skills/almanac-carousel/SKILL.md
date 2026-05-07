@@ -43,7 +43,18 @@ Read brand.config.json
 **Batch 3 — voice + content rules (optional; can skip with sensible defaults)**
 7. **Voice rules.** Free-text list of dos/don'ts for body copy. Examples to suggest: "no em dashes", "first letter of every sentence is capital", "no emojis", "no marketing speak". Default: standard English grammar, no em dashes, no emojis.
 8. **Content verification rules.** What facts or claims need primary-source verification before render? (e.g. "all financial claims need a citation", "all hadith verified on sunnah.com to ≥hasan grading", "all statistics need a year + source"). If they have nothing specific, leave empty.
-9. **API token.** Confirm `REPLICATE_API_TOKEN` is set in `.env` at the project root. If `.env` doesn't exist or doesn't have it, instruct: "Get a token from replicate.com, then create a `.env` file at the project root with `REPLICATE_API_TOKEN=r8_...` (see `.env.example`)." Halt setup until they confirm it's added — without it, image generation cannot run.
+9. **Replicate API token (REQUIRED).** Image generation can't run without it. First check whether `.env` already exists at the project root and contains a `REPLICATE_API_TOKEN=r8_...` line — if it does, skip this step. Otherwise, offer two paths and let the user pick:
+
+   - **(a) Paste it here, I'll write `.env` for you.** Fast, one-shot. Caveat: the token will appear in this Claude Code conversation transcript (Anthropic may briefly retain prompts for safety/abuse review). Fine for personal dev tokens; not recommended for shared secrets.
+   - **(b) I'll set up `.env` myself.** User creates `.env` at the project root with `REPLICATE_API_TOKEN=r8_...` (see `.env.example`) and confirms when done. The token never enters chat.
+
+   Get one at https://replicate.com/account/api-tokens. Phrase the choice as a question with both options visible — don't push them toward (a) without flagging the privacy tradeoff.
+
+   **If they pick (a):** ask them to paste the token, then `Write` `.env` at the project root with a single line: `REPLICATE_API_TOKEN=<their-pasted-value>` (no quotes, no spaces around `=`). Confirm "saved to .env" and continue.
+
+   **If they pick (b):** wait for their "done" confirmation, then `Read` `.env` to verify the line is present. If it isn't, surface the issue and re-ask.
+
+   Do **not** echo the token back in chat after writing it — once `.env` is written, refer to it as "your token" without printing the value.
 
 ### After the interview
 
@@ -69,11 +80,9 @@ Write `/brand.config.json` at the project root with this shape:
 }
 ```
 
-Then write `content-bank/almanac/theme.css` from the palette + accent color (just three CSS variable blocks, see `base.css` for the existing token layout — you're generating the override file that loads after `base.css`).
+Then run `python3 content-bank/almanac/build.py` once to verify everything wires up. The script reads `brand.config.json` automatically, regenerates `theme.css` from the palette + accent color, and reports "no carousel folders found" — that's the expected first-run state. The handle in HTML and the `STYLE_PREFIX` for image gen are both pulled from `brand.config.json` at every build, so no per-file edits are needed.
 
-Then update the handle in `content-bank/almanac/build.py`'s slide template (search for `__HANDLE__` and replace with the user's handle), and update `STYLE_PREFIX` in `content-bank/almanac/nanobanana.py` if they picked a non-engraving image style.
-
-**Confirm with the user** that everything is wired up, then proceed to the workflow below the next time they ask for a carousel. The setup is one-time — once `brand.config.json` exists, this whole step is skipped on future invocations.
+**Confirm with the user** that the kit is ready, then proceed to the workflow below the next time they ask for a carousel. The setup is one-time — once `brand.config.json` exists, this whole step is skipped on future invocations.
 
 ---
 
